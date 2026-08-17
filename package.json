@@ -13,6 +13,8 @@
   ],
   "scripts": {
     "check:privacy": "node scripts/privacy-check.mjs",
+    "pob:compact": "node packages/cli/src/cli.mjs pob compact",
+    "test:pob": "node tests/smoke/compact-pob.mjs",
     "test": "npm run check:privacy"
   },
   "repository": {

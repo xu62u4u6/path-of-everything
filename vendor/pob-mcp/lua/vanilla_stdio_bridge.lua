@@ -172,6 +172,8 @@ handlers.get_stats = function(params)
   return { ok = true, stats = stats }
 end
 
+handlers.get_compact_output = op(BuildOps.get_compact_output, 'result')
+
 handlers.set_tree = function(params)
   local ok2, err = BuildOps.set_tree(params or {})
   if not ok2 then return { ok = false, error = err } end

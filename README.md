@@ -30,9 +30,31 @@ scripts/         Setup, update, validation, and upstream sync commands
 
 ## Status
 
-The repository is being bootstrapped. The first milestone is a compact,
-headless Path of Building workflow that can load a build, select the correct
-skill and minion item set, calculate stats, and compare legal scenarios.
+The compact headless Path of Building workflow is available as an MVP. It calls
+an unmodified Path of Building checkout through the vendored Lua bridge and
+returns one small JSON object instead of the full calculation graph.
+
+Prerequisites are Node.js 20+, LuaJIT, and a stock
+[`PathOfBuilding`](https://github.com/PathOfBuildingCommunity/PathOfBuilding)
+checkout. No PoB source patch is required.
+
+```bash
+POB_PATH=/path/to/PathOfBuilding \
+POB_CMD=luajit \
+npm run pob:compact -- --build example.xml \
+  --socket-group 1 --active-skill 1
+```
+
+For a blank level 20 gem calculation:
+
+```bash
+POB_PATH=/path/to/PathOfBuilding \
+npm run pob:compact -- --new-skill "Summon Raging Spirit" --gem-level 20
+```
+
+Minion builds may also specify `--skill-part`, `--minion-skill`, and
+`--minion-item-set`. The output explicitly warns that configured PoB states do
+not prove real uptime.
 
 ## Privacy
 

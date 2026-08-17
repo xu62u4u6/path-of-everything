@@ -81,6 +81,86 @@ function M.export_stats(fields)
   return result
 end
 
+local function compact_number(value)
+  return type(value) == 'number' and value or nil
+end
+
+local function compact_damage(output, damageType)
+  local hand = output and output.MainHand
+  if type(hand) ~= 'table' then return nil end
+  local min = compact_number(hand[damageType .. 'MinBase'])
+  local max = compact_number(hand[damageType .. 'MaxBase'])
+  if (min == nil and max == nil) or ((min or 0) == 0 and (max or 0) == 0) then return nil end
+  return { min = min or 0, max = max or 0 }
+end
+
+-- Stable, deliberately small output for agents and command-line audits.
+-- This reports PoB's configured calculation state; it does not assert uptime.
+function M.get_compact_output()
+  local root, err = M.get_main_output()
+  if not root then return nil, err end
+
+  local output = type(root.Minion) == 'table' and root.Minion or root
+  local env = build.calcsTab and build.calcsTab.mainEnv or nil
+  local mainSkill = env and env.player and env.player.mainSkill or nil
+  local group = build.skillsTab and build.skillsTab.socketGroupList and build.skillsTab.socketGroupList[build.mainSocketGroup] or nil
+  local activeIndex = group and (group.mainActiveSkill or 1) or nil
+  local active = group and group.displaySkillList and group.displaySkillList[activeIndex] or nil
+  local src = active and active.activeEffect and active.activeEffect.srcInstance or nil
+  local skillName = active and active.activeEffect and active.activeEffect.grantedEffect and active.activeEffect.grantedEffect.name or nil
+
+  local damage = {}
+  local baseDamageAverage = 0
+  for _, damageType in ipairs({ 'Physical', 'Lightning', 'Cold', 'Fire', 'Chaos' }) do
+    local range = compact_damage(output, damageType)
+    if range then
+      damage[damageType:lower()] = range
+      baseDamageAverage = baseDamageAverage + (range.min + range.max) / 2
+    end
+  end
+
+  return {
+    schemaVersion = 1,
+    engine = {
+      name = 'Path of Building Community',
+      version = _G.launch and _G.launch.versionNumber or nil,
+      branch = _G.launch and _G.launch.versionBranch or nil,
+      treeVersion = build.targetVersion or (build.spec and build.spec.treeVersion) or nil,
+    },
+    build = {
+      name = build.buildName,
+      level = tonumber(build.characterLevel),
+      className = build.spec and build.spec.curClassName or nil,
+      ascendancy = build.spec and build.spec.curAscendClassName or nil,
+    },
+    selection = {
+      socketGroup = tonumber(build.mainSocketGroup),
+      activeSkill = tonumber(activeIndex),
+      skillName = skillName,
+      skillPart = src and tonumber(src.skillPart) or nil,
+      skillPartName = mainSkill and mainSkill.skillPartName or nil,
+      minionSkill = src and tonumber(src.skillMinionSkill) or nil,
+      minionItemSet = src and tonumber(src.skillMinionItemSet) or nil,
+      outputScope = type(root.Minion) == 'table' and 'minion' or 'player',
+    },
+    offense = {
+      averageHit = compact_number(output.AverageDamage),
+      attackOrCastRate = compact_number(output.Speed),
+      totalDps = compact_number(output.TotalDPS),
+      combinedDps = compact_number(output.CombinedDPS),
+      critChance = compact_number(output.CritChance),
+      critMultiplier = compact_number(output.CritMultiplier),
+      hitChance = compact_number(output.HitChance),
+      baseDamage = next(damage) and damage or nil,
+      baseDamageAverage = next(damage) and baseDamageAverage or nil,
+    },
+    warnings = {
+      'PoB configuration values are calculation inputs; uptime is not validated.',
+      'DPS meaning depends on the selected skill, skill part, and minion item set.',
+    },
+  }
+end
+
 function M.get_tree()
   if not build or not build.spec then
     return nil, "build/spec not initialized"
@@ -339,10 +419,22 @@ function M.set_main_selection(params)
   if params.mainActiveSkill ~= nil then
     g.mainActiveSkill = tonumber(params.mainActiveSkill) or g.mainActiveSkill
   end
-  if params.skillPart ~= nil then
-    local idx = g.mainActiveSkill or 1
-    local src = g.displaySkillList and g.displaySkillList[idx] and g.displaySkillList[idx].activeEffect and g.displaySkillList[idx].activeEffect.srcInstance
-    if src then src.skillPart = tonumber(params.skillPart) end
+  local idx = g.mainActiveSkill or 1
+  local src = g.displaySkillList and g.displaySkillList[idx] and g.displaySkillList[idx].activeEffect and g.displaySkillList[idx].activeEffect.srcInstance
+  if src then
+    if params.skillPart ~= nil then
+      src.skillPart = tonumber(params.skillPart)
+      src.skillPartCalcs = tonumber(params.skillPart)
+    end
+    if params.minionSkill ~= nil then
+      src.skillMinionSkill = tonumber(params.minionSkill)
+      src.skillMinionSkillCalcs = tonumber(params.minionSkill)
+    end
+    if params.minionItemSet ~= nil then
+      src.skillMinionItemSet = tonumber(params.minionItemSet)
+      src.skillMinionItemSetCalcs = tonumber(params.minionItemSet)
+    end
+    if build.skillsTab.ProcessSocketGroup then build.skillsTab:ProcessSocketGroup(g) end
   end
   -- Keep calcsTab in sync: use active group index
   build.calcsTab.input.skill_number = build.mainSocketGroup
