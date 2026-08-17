@@ -14,6 +14,8 @@ const client = new BridgeClient({
 
 let result;
 let guardianResult;
+let guardianBootsOnly;
+let guardianWithWeapon;
 try {
   await client.start();
   const capabilities = await client.request('get_capabilities');
@@ -48,6 +50,16 @@ try {
     minionItemSet: 1,
   });
   guardianResult = (await client.request('get_compact_output')).result;
+  await client.request('add_item_text', {
+    text: 'Rarity: Normal\nIron Greaves',
+    slotName: 'Boots',
+  });
+  guardianBootsOnly = (await client.request('get_compact_output')).result;
+  await client.request('add_item_text', {
+    text: 'Rarity: Normal\nDriftwood Club',
+    slotName: 'Weapon 1',
+  });
+  guardianWithWeapon = (await client.request('get_compact_output')).result;
 } finally {
   await client.stop();
 }
@@ -62,5 +74,8 @@ assert.equal(result.warnings.length, 2);
 assert.equal(guardianResult.selection.skillName, 'Animate Guardian');
 assert.equal(guardianResult.selection.minionSkill, 1);
 assert.equal(guardianResult.selection.minionItemSet, 1);
+assert.equal(guardianResult.offense.averageHit, 0);
+assert.equal(guardianBootsOnly.offense.averageHit, 0);
+assert.deepEqual(guardianWithWeapon.offense.baseDamage.physical, { min: 9, max: 16 });
 
-console.log('compact PoB smoke passed: SRS 158-237 (average 197.5), XML reload, and AG minion selection');
+console.log('compact PoB smoke passed: SRS XML reload, AG equipment selection, and weapon-dependent AG damage');
