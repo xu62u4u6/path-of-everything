@@ -1,0 +1,4 @@
+interface:
+  display_name: "PoE Build Audit"
+  short_description: "Audit PoE builds, mechanics, and state uptime"
+  default_prompt: "Use $poe-build-audit to audit this Path of Exile build and verify every conditional state."

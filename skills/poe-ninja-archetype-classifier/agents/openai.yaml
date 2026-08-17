@@ -1,0 +1,4 @@
+interface:
+  display_name: "PoE Ninja Archetype Classifier"
+  short_description: "Compare predictions with poe.ninja archetypes"
+  default_prompt: "Use $poe-ninja-archetype-classifier to compare pre-league creator predictions with observed poe.ninja archetypes."

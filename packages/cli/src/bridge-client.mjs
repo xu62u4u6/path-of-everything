@@ -43,10 +43,11 @@ export async function resolvePobSource(value) {
 }
 
 export class BridgeClient {
-  constructor({ pobSource, command = 'luajit', bridgeScript, timeoutMs = 60_000 }) {
+  constructor({ pobSource, command = 'luajit', bridgeScript, compatLua, timeoutMs = 60_000 }) {
     this.pobSource = pobSource;
     this.command = command;
     this.bridgeScript = bridgeScript;
+    this.compatLua = compatLua;
     this.timeoutMs = timeoutMs;
   }
 
@@ -54,10 +55,11 @@ export class BridgeClient {
     const checkout = path.dirname(this.pobSource);
     const runtimeLua = path.join(checkout, 'runtime', 'lua');
     const inheritedLuaPath = process.env.LUA_PATH ? `${process.env.LUA_PATH};` : '';
+    const compatLuaPath = this.compatLua ? `${this.compatLua}/?.lua;` : '';
     const env = {
       ...process.env,
       POB_API_STDIO: '1',
-      LUA_PATH: `${inheritedLuaPath}${runtimeLua}/?.lua;${runtimeLua}/?/init.lua;;`,
+      LUA_PATH: `${inheritedLuaPath}${compatLuaPath}${runtimeLua}/?.lua;${runtimeLua}/?/init.lua;;`,
     };
     this.stderr = '';
     this.process = spawn(this.command, [this.bridgeScript], {

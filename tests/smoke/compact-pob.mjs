@@ -9,6 +9,7 @@ const client = new BridgeClient({
   pobSource: await resolvePobSource(pobPath),
   command: process.env.POB_CMD || 'luajit',
   bridgeScript: resolve('vendor/pob-mcp/lua/vanilla_stdio_bridge.lua'),
+  compatLua: resolve('packages/cli/lua'),
   timeoutMs: 60_000,
 });
 

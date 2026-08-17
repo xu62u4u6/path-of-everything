@@ -1,0 +1,4 @@
+interface:
+  display_name: "PoE Build Planner"
+  short_description: "Plan verified PoE builds across budget tiers"
+  default_prompt: "Use $poe-build-planner to turn this Path of Exile archetype into a verified multi-budget guide."

@@ -38,6 +38,9 @@ Prerequisites are Node.js 20+, LuaJIT, and a stock
 [`PathOfBuilding`](https://github.com/PathOfBuildingCommunity/PathOfBuilding)
 checkout. No PoB source patch is required.
 
+The CLI includes the small Lua compatibility layer required by stock PoB when
+the selected standalone LuaJIT does not provide `lua-utf8`.
+
 ```bash
 POB_PATH=/path/to/PathOfBuilding \
 POB_CMD=luajit \
@@ -57,6 +60,13 @@ Minion builds may also specify `--skill-part`, `--minion-skill`, and
 not prove real uptime. Calculations default to a Guardian/Pinnacle boss for a
 stable comparison baseline; use `--enemy-boss saved` to preserve the build's
 saved setting, or choose `none`, `standard`, or `uber` explicitly.
+
+## Agent skills
+
+The versioned PoE audit, planning, and poe.ninja classification skills live in
+`skills/`. Their shared PoB-first, seasonal-update, factsheet, and privacy
+contract is `docs/agent-runtime.md`. Install or update the required skill folder
+in the agent's skill directory; keep this repository as the source of truth.
 
 ## Privacy
 

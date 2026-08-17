@@ -11,6 +11,9 @@ regression fixtures can be released and tested together.
 4. Facts are reviewed, version-scoped records compiled into a searchable index.
 5. Raw snapshots and private overlays live outside the repository.
 
+Agent workflows use `docs/agent-runtime.md` as the shared contract for PoB-first
+calculation, seasonal refreshes, and reviewed facts.
+
 ## Data flow
 
 ```text

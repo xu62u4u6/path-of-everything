@@ -70,6 +70,7 @@ async function main() {
     pobSource,
     command: options.pob_cmd || process.env.POB_CMD || 'luajit',
     bridgeScript: path.join(root, 'vendor/pob-mcp/lua/vanilla_stdio_bridge.lua'),
+    compatLua: path.join(root, 'packages/cli/lua'),
     timeoutMs: optionalInteger(options, 'timeout_ms') || 60_000,
   });
 
