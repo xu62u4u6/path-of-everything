@@ -1,0 +1,5 @@
+{
+  "repository": "https://github.com/ianderse/pob-mcp.git",
+  "commit": "26945d7cabe352156dd785289e13926ada223aa7",
+  "import": "git-subtree-squash"
+}

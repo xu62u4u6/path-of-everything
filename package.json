@@ -1,0 +1,22 @@
+{
+  "name": "path-of-everything",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Evidence-first tools for Path of Exile",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "check:privacy": "node scripts/privacy-check.mjs",
+    "test": "npm run check:privacy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xu62u4u6/path-of-everything.git"
+  }
+}

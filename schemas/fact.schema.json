@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xu62u4u6/path-of-everything/blob/main/schemas/fact.schema.json",
+  "title": "Path of Everything fact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "game",
+    "patch",
+    "kind",
+    "subject",
+    "claim",
+    "method",
+    "verified_at",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$" },
+    "game": { "const": "poe1" },
+    "patch": { "type": "string", "minLength": 1 },
+    "league": { "type": ["string", "null"] },
+    "kind": {
+      "enum": ["mechanic", "gem", "item", "monster", "availability", "market-snapshot"]
+    },
+    "subject": { "type": "string", "minLength": 1 },
+    "claim": { "type": "string", "minLength": 1 },
+    "value": {},
+    "method": {
+      "enum": ["pob-headless", "source-extraction", "observed", "calculated"]
+    },
+    "pob_commit": { "type": ["string", "null"] },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["uri", "retrieved_at"],
+        "properties": {
+          "uri": { "type": "string", "format": "uri" },
+          "title": { "type": "string" },
+          "retrieved_at": { "type": "string", "format": "date-time" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": ["string", "null"], "format": "date-time" },
+    "status": { "enum": ["draft", "verified", "superseded", "invalidated"] },
+    "notes": { "type": "string" }
+  }
+}
