@@ -65,6 +65,7 @@ try {
 }
 
 assert.equal(result.schemaVersion, 1);
+assert.equal(result.scenario.enemyBoss, 'Pinnacle');
 assert.equal(result.selection.skillName, 'Summon Raging Spirit');
 assert.equal(result.selection.outputScope, 'minion');
 assert.deepEqual(result.offense.baseDamage.physical, { min: 158, max: 237 });

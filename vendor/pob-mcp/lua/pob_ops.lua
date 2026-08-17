@@ -133,6 +133,10 @@ function M.get_compact_output()
       className = build.spec and build.spec.curClassName or nil,
       ascendancy = build.spec and build.spec.curAscendClassName or nil,
     },
+    scenario = {
+      enemyBoss = build.configTab and build.configTab.input and build.configTab.input.enemyIsBoss or nil,
+      enemyLevel = build.configTab and tonumber(build.configTab.enemyLevel) or nil,
+    },
     selection = {
       socketGroup = tonumber(build.mainSocketGroup),
       activeSkill = tonumber(activeIndex),

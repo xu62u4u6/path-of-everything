@@ -16,6 +16,7 @@ Options:
   --skill-part N           Skill part used by PoB
   --minion-skill N         Minion subskill used by PoB
   --minion-item-set N      Animate Guardian/minion item set used by PoB
+  --enemy-boss MODE        none, standard, pinnacle, uber, or saved (default: pinnacle)
   --timeout-ms N           Per-response timeout (default: 60000)
 `;
 
@@ -47,6 +48,13 @@ function writeStdout(value) {
   return new Promise((resolve, reject) => {
     process.stdout.write(value, (error) => error ? reject(error) : resolve());
   });
+}
+
+function enemyBossMode(value = 'pinnacle') {
+  const modes = { none: 'None', standard: 'Boss', pinnacle: 'Pinnacle', uber: 'Uber', saved: null };
+  const mode = modes[value.toLowerCase()];
+  if (mode === undefined) throw new Error('--enemy-boss must be none, standard, pinnacle, uber, or saved.');
+  return mode;
 }
 
 async function main() {
@@ -83,6 +91,9 @@ async function main() {
       });
       options.socket_group = String(group.socketGroup.index);
     }
+
+    const bossMode = enemyBossMode(options.enemy_boss);
+    if (bossMode !== null) await client.request('set_config', { enemyIsBoss: bossMode });
 
     const selection = {
       mainSocketGroup: optionalInteger(options, 'socket_group'),

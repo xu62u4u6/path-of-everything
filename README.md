@@ -54,7 +54,9 @@ npm run pob:compact -- --new-skill "Summon Raging Spirit" --gem-level 20
 
 Minion builds may also specify `--skill-part`, `--minion-skill`, and
 `--minion-item-set`. The output explicitly warns that configured PoB states do
-not prove real uptime.
+not prove real uptime. Calculations default to a Guardian/Pinnacle boss for a
+stable comparison baseline; use `--enemy-boss saved` to preserve the build's
+saved setting, or choose `none`, `standard`, or `uber` explicitly.
 
 ## Privacy
 
