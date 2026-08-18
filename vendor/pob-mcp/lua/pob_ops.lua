@@ -165,6 +165,102 @@ function M.get_compact_output()
   }
 end
 
+-- Copy PoB calculation tables into JSON-safe values without exposing functions,
+-- userdata, or cyclic references.  The raw calculation graph is intentionally
+-- bounded: it is diagnostic evidence, not a promise that every private UI
+-- object is a stable API.
+local function json_safe(value, depth, seen, maxDepth, maxKeys)
+  local valueType = type(value)
+  if value == nil or valueType == 'string' or valueType == 'boolean' then return value end
+  if valueType == 'number' then
+    if value ~= value or value == math.huge or value == -math.huge then return tostring(value) end
+    return value
+  end
+  if valueType ~= 'table' then return '<' .. valueType .. '>' end
+  if depth >= maxDepth then return '<max-depth>' end
+  if seen[value] then return '<cycle>' end
+  seen[value] = true
+
+  local keys, count = {}, 0
+  for key, _ in pairs(value) do
+    local keyType = type(key)
+    if keyType == 'string' or keyType == 'number' then
+      count = count + 1
+      if count <= maxKeys then table.insert(keys, key) end
+    end
+  end
+  table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
+
+  local isArray = count > 0
+  local maxIndex = 0
+  if isArray then
+    for _, key in ipairs(keys) do
+      if type(key) ~= 'number' or key < 1 or key % 1 ~= 0 then isArray = false; break end
+      if key > maxIndex then maxIndex = key end
+    end
+    if isArray and maxIndex ~= count then isArray = false end
+  end
+
+  local result = {}
+  if isArray then
+    for index = 1, maxIndex do result[index] = json_safe(value[index], depth + 1, seen, maxDepth, maxKeys) end
+  else
+    for _, key in ipairs(keys) do
+      result[tostring(key)] = json_safe(value[key], depth + 1, seen, maxDepth, maxKeys)
+    end
+  end
+  if count > maxKeys then result.__truncatedKeys = count - maxKeys end
+  seen[value] = nil
+  return result
+end
+
+-- Full, schema-owned calculation snapshot.  This keeps the compact stable
+-- fields while exposing the useful PoB calculation tables for mechanism
+-- validation and before/after comparisons.
+function M.get_full_output(params)
+  local root, err = M.get_main_output()
+  if not root then return nil, err end
+  params = type(params) == 'table' and params or {}
+  local maxDepth = math.min(math.max(tonumber(params.maxDepth) or 8, 2), 16)
+  local maxKeys = math.min(math.max(tonumber(params.maxKeys) or 10000, 100), 100000)
+  local compact = M.get_compact_output()
+  local stats = M.export_stats()
+  local config = M.get_config()
+  local skills = M.get_skills()
+  local items = M.get_items()
+  local tree = M.get_tree()
+  local function safe(value) return json_safe(value, 0, {}, maxDepth, maxKeys) end
+
+  return {
+    schemaVersion = 2,
+    exportType = 'pob-calculation',
+    engine = compact.engine,
+    build = compact.build,
+    selection = compact.selection,
+    scenario = compact.scenario,
+    inputs = {
+      config = config,
+      skills = skills,
+      items = items,
+      tree = tree,
+    },
+    normalized = {
+      offense = compact.offense,
+      stats = stats,
+      warnings = compact.warnings,
+    },
+    calculation = {
+      mainOutput = safe(root),
+      minionOutput = type(root.Minion) == 'table' and safe(root.Minion) or nil,
+    },
+    limits = { maxDepth = maxDepth, maxKeys = maxKeys },
+    warnings = {
+      'PoB configuration values are calculation inputs; uptime is not validated.',
+      'calculation.mainOutput is a sanitized diagnostic snapshot and may contain PoB-version-specific fields.',
+    },
+  }
+end
+
 function M.get_tree()
   if not build or not build.spec then
     return nil, "build/spec not initialized"

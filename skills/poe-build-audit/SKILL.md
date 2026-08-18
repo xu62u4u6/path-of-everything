@@ -61,6 +61,22 @@ enemy scenario. If the compact surface lacks a required operation, query the
 pob-mcp bridge capabilities and keep the calculation in PoB. Inspect PoB source
 or calculate manually only after recording why PoB cannot express the question.
 
+For mechanism validation or before/after tuning, use the full snapshot endpoint
+(`npm run pob:full` / `get_full_output`) instead of adding a skill-specific
+extractor. Keep the adjustable input in the input schema and inspect the same
+output paths for every skill. Start with the reusable questions in
+`packages/cli/src/validation-cases.mjs`: base damage, support eligibility,
+added-damage effectiveness, secondary damage ownership, minion stat ownership,
+conversion, trigger cooldowns, counts/overlap, resource loops, and special
+actor eligibility. A case is a question plus inputs and assertion paths; it is
+not a proof until the exported values and current mechanics evidence agree.
+
+PoB desktop accepts a `https://pobb.in/<id>` link in its Import/Export tab. For
+headless work, pass that link to Path of Everything with `--build-url`; the CLI
+resolves the raw `/pob/<id>` endpoint, decodes the URL-safe base64/zlib export,
+and loads the XML through the PoB bridge. `--build` remains the local-XML
+input. Keep fetched XML private and do not print or commit a character export.
+
 PoB remains a calculator, not proof of uptime, AI behavior, legal acquisition,
 price, or survivability. Preserve every existing state-ledger, defensive,
 behavioral, legal-state, and source-verification check in this skill.

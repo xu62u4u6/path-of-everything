@@ -34,6 +34,31 @@ The compact headless Path of Building workflow is available as an MVP. It calls
 an unmodified Path of Building checkout through the vendored Lua bridge and
 returns one small JSON object instead of the full calculation graph.
 
+For mechanism work, the CLI also exposes a schema-owned full calculation
+snapshot. It preserves the compact fields and adds build inputs, skills, items,
+tree, selected PoB output tables, limits, and warnings:
+
+```bash
+POB_PATH=/path/to/PathOfBuilding \
+POB_CMD=luajit \
+npm run pob:full -- --build build.xml --socket-group 1 --active-skill 1
+```
+
+The same selection and scenario can be kept in an editable JSON input file:
+
+```bash
+POB_PATH=/path/to/PathOfBuilding \
+npm run pob:full -- --input calculation-input.json
+```
+
+`schemas/pob-calculation-input.schema.json` and
+`schemas/pob-calculation-output.schema.json` define the input/output contract.
+The output's `calculation.mainOutput` is a bounded, JSON-safe diagnostic view;
+its fields may vary with the pinned PoB version. Reusable mechanism questions
+live in `packages/cli/src/validation-cases.mjs`, so SRS, Animate Guardian,
+Stormblast, support eligibility, conversion, triggers, and resource loops all
+consume the same exported calculation state.
+
 Prerequisites are Node.js 20+, LuaJIT, and a stock
 [`PathOfBuilding`](https://github.com/PathOfBuildingCommunity/PathOfBuilding)
 checkout. No PoB source patch is required.
@@ -47,6 +72,20 @@ POB_CMD=luajit \
 npm run pob:compact -- --build example.xml \
   --socket-group 1 --active-skill 1
 ```
+
+PoB's desktop Import/Export tab accepts a `pobb.in` link directly. For
+headless use, Path of Everything provides the equivalent URL input; it fetches
+the raw export, decodes it, and only sends XML to PoB:
+
+```bash
+POB_PATH=/path/to/PathOfBuilding \
+npm run pob:compact -- \
+  --build-url https://pobb.in/<id> \
+  --enemy-boss pinnacle
+```
+
+The URL is not included in the compact JSON output. The decoded XML stays in
+memory unless the caller explicitly saves it.
 
 For a blank level 20 gem calculation:
 

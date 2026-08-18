@@ -326,6 +326,12 @@ export class PoBLuaApiClient {
     return res.stats as Record<string, any>;
   }
 
+  async getFullOutput(options?: { maxDepth?: number; maxKeys?: number }): Promise<any> {
+    const res = await this.send({ action: "get_full_output", params: options || {} });
+    if (!res.ok) throw new Error(res.error || "get_full_output failed");
+    return res.result;
+  }
+
   async getTree(): Promise<any> {
     const res = await this.send({ action: "get_tree" });
     if (!res.ok) throw new Error(res.error || "get_tree failed");

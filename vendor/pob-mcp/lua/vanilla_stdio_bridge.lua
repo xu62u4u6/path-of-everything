@@ -173,6 +173,7 @@ handlers.get_stats = function(params)
 end
 
 handlers.get_compact_output = op(BuildOps.get_compact_output, 'result')
+handlers.get_full_output = op(BuildOps.get_full_output, 'result')
 
 handlers.set_tree = function(params)
   local ok2, err = BuildOps.set_tree(params or {})

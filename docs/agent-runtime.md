@@ -28,6 +28,22 @@ Do not clone, pull, install, or update dependencies without authorization.
 6. Use source extraction or manual calculation only when PoB cannot represent
    the mechanic. Label the result and the unsupported PoB boundary.
 
+PoB desktop can accept a `https://pobb.in/<id>` link directly in its
+Import/Export tab. The headless bridge accepts XML, so use Path of Everything's
+URL input to perform the same import without printing the character export:
+
+```bash
+POB_PATH=/path/to/PathOfBuilding \
+npm run pob:compact -- \
+  --build-url https://pobb.in/<id> \
+  --enemy-boss pinnacle
+```
+
+The CLI resolves the link to `https://pobb.in/pob/<id>`, decodes the URL-safe
+base64/zlib payload, and sends the resulting XML through `load_build_xml`.
+Keep the decoded XML in a private temporary path when a reusable artifact is
+needed; do not commit a character export.
+
 Example:
 
 ```bash

@@ -14,8 +14,13 @@
   "scripts": {
     "check:privacy": "node scripts/privacy-check.mjs",
     "pob:compact": "node packages/cli/src/cli.mjs pob compact",
+    "pob:full": "node packages/cli/src/cli.mjs pob full",
+    "pob:cases": "node packages/cli/src/cli.mjs pob cases",
     "test:pob": "node tests/smoke/compact-pob.mjs",
-    "test": "npm run check:privacy"
+    "test:pob:full": "node tests/smoke/full-pob.mjs",
+    "test:unit": "node --test tests/pobb-input.mjs",
+    "test:validation": "node --test tests/validation-cases.mjs",
+    "test": "npm run check:privacy && npm run test:unit"
   },
   "repository": {
     "type": "git",

@@ -333,6 +333,25 @@ export async function handleLuaGetStats(context: LuaHandlerContext, category?: s
 }
 
 /**
+ * Return the schema-owned full PoB calculation snapshot for mechanism checks
+ * and before/after comparisons. The bridge bounds the diagnostic graph so this
+ * remains JSON-safe and does not expose arbitrary UI objects.
+ */
+export async function handleLuaGetFullOutput(context: LuaHandlerContext, maxDepth?: number, maxKeys?: number) {
+  return wrapHandler('get full PoB calculation output', async () => {
+    await context.ensureLuaClient();
+
+    const luaClient = context.getLuaClient();
+    if (!luaClient) {
+      throw new Error('Lua client not initialized');
+    }
+
+    const result = await luaClient.getFullOutput({ maxDepth, maxKeys });
+    return { content: [{ type: 'text' as const, text: JSON.stringify(result, null, 2) }] };
+  });
+}
+
+/**
  * A compact, post-edit view of the loaded build. Requests are deliberately
  * sequential because both bridge implementations use a single stdio channel.
  */

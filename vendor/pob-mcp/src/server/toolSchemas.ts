@@ -384,6 +384,17 @@ export function getLuaToolSchemas(): any[] {
       },
     },
     {
+      name: "lua_get_full_output",
+      description: "Export a schema-owned, JSON-safe PoB calculation snapshot with build inputs, selected skill state, normalized stats, and a bounded diagnostic view of PoB's calculation output. Use this for mechanism validation and before/after comparisons; it does not prove uptime.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          max_depth: { type: "number", description: "Diagnostic graph recursion limit (2-16, default 8)" },
+          max_keys: { type: "number", description: "Diagnostic graph keys per table limit (100-100000, default 10000)" },
+        },
+      },
+    },
+    {
       name: "lua_get_tree",
       description: "Get passive tree allocation from currently loaded build",
       inputSchema: {

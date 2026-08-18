@@ -42,7 +42,7 @@ try {
   const invalidChain = await request('tools/call', { name: 'calculate_trading_profit', arguments: { league: 'Standard', currency_chain: ['Chaos Orb'] } });
   if (invalidChain.result?.isError !== true) throw new Error(`handler errors must set isError: ${JSON.stringify(invalidChain)}`);
   // The stock-checkout adapter supports the full tool surface
-  for (const name of ['lua_get_capabilities', 'lua_get_build_snapshot', 'lua_start', 'lua_stop', 'lua_load_build', 'lua_get_stats', 'lua_get_tree', 'lua_set_tree', 'lua_get_build_info', 'get_equipped_items', 'get_skill_setup', 'find_best_anointment', 'add_item', 'toggle_flask', 'set_config', 'add_gem', 'create_spec', 'toggle_socket_group', 'suggest_masteries', 'lua_save_build']) {
+  for (const name of ['lua_get_capabilities', 'lua_get_build_snapshot', 'lua_start', 'lua_stop', 'lua_load_build', 'lua_get_stats', 'lua_get_full_output', 'lua_get_tree', 'lua_set_tree', 'lua_get_build_info', 'get_equipped_items', 'get_skill_setup', 'find_best_anointment', 'add_item', 'toggle_flask', 'set_config', 'add_gem', 'create_spec', 'toggle_socket_group', 'suggest_masteries', 'lua_save_build']) {
     if (!names.has(name)) throw new Error(`missing MCP tool: ${name}`);
   }
   for (const [name, args] of [
@@ -51,6 +51,7 @@ try {
     ['lua_load_build', { build_name: 'example.xml' }],
     ['lua_get_build_snapshot', {}],
     ['lua_get_stats', {}],
+    ['lua_get_full_output', { max_depth: 5, max_keys: 1000 }],
     ['get_equipped_items', {}],
     ['get_skill_setup', { main_only: false }],
     ['lua_get_tree', { include_node_ids: true }],
@@ -71,6 +72,12 @@ try {
       const expectedNodes = [2, 1, 2][snapshotCount++];
       if (!text.includes(`Tree: ${expectedNodes} allocated nodes`)) {
         throw new Error(`snapshot did not report the expected passive-tree state: ${text}`);
+      }
+    }
+    if (name === 'lua_get_full_output') {
+      const text = response.result?.content?.[0]?.text || '';
+      if (!text.includes('"exportType": "pob-calculation"') || !text.includes('"calculation"')) {
+        throw new Error(`lua_get_full_output returned an incomplete response: ${text.slice(0, 500)}`);
       }
     }
   }
