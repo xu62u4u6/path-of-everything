@@ -89,11 +89,17 @@ actor eligibility. A case is a question plus inputs and assertion paths; it is
 not a proof until the exported values and current mechanics evidence agree.
 
 For gem-level and quality questions, read the selected gem from
-`inputs.skills.groups[].gems[]` by socket group and `skillId`/name. Do not use
-aggregate fields such as `mainOutput.GemQuality` as the active gem's quality:
-linked support qualities can be included there. For mine and minion questions,
-separate gem quality, support quality, active-count limit, actual count near
-the enemy, throw count, aura-effect multiplier, and cap before doing arithmetic.
+`inputs.skills.groups[].gems[]` by socket group and `skillId`/name, then compare
+its raw level/quality with PoB's `calculation.mainOutput.GemLevel` and
+`GemQuality` after the selection has been proven. The latter is the effective
+quality of the selected active skill in PoB (including applicable item,
+support, and socket quality); do not call it a sum of every linked gem, and do
+not use it without recording the selected group/skill. If PoB does not expose a
+breakdown, report raw gem quality and effective PoB quality separately and
+leave the source split explicit. For mine and minion questions, separate raw
+and effective gem quality, support quality, active-count limit, actual count
+near the enemy, throw count, aura-effect multiplier, and cap before doing
+arithmetic.
 
 PoB desktop accepts a `https://pobb.in/<id>` link in its Import/Export tab. For
 headless work, pass that link to Path of Everything with `--build-url`; the CLI
