@@ -27,6 +27,23 @@ When the user asks a bounded deep question about the actual action loop, button 
 4. In the overview, verify only league-specific components central to the engine. Verify the rest when they become relevant to a recommendation.
 5. Preserve the user's intended mechanic. Do not silently redesign an unusual build into the meta version.
 
+## Current-Character Gate
+
+Treat `current`, `latest`, `目前角色`, and similar wording as a hard source
+requirement. Load a fresh character model or PoB export in the same turn and
+record account, character, league, level, `updatedUtc`, and snapshot path. Do
+not use memory, Wiki pages, or an older local snapshot as a substitute. Memory
+and Wiki may locate the character or explain a mechanic, but never supply the
+current gem, item, quality, count, or modifier value when a fresh source is
+requested. If the fresh source cannot be reached, state the blocker and ask for
+the export/link instead of silently falling back.
+
+Before calculating, prove that PoB is using that artifact: load its XML, select
+the requested socket group and active skill, select the weapon/item set and
+minion subskill when relevant, then report the resulting build identity and
+selection. Label every number as `current snapshot`, `hypothetical override`,
+`cached`, or `memory-derived`.
+
 ## Judge Patch Survival by the Complete Engine
 
 When reviewing patch notes or deciding whether a build is alive, identify the character's actual engine before judging the named skill gem. Decompose it into:
@@ -70,6 +87,13 @@ added-damage effectiveness, secondary damage ownership, minion stat ownership,
 conversion, trigger cooldowns, counts/overlap, resource loops, and special
 actor eligibility. A case is a question plus inputs and assertion paths; it is
 not a proof until the exported values and current mechanics evidence agree.
+
+For gem-level and quality questions, read the selected gem from
+`inputs.skills.groups[].gems[]` by socket group and `skillId`/name. Do not use
+aggregate fields such as `mainOutput.GemQuality` as the active gem's quality:
+linked support qualities can be included there. For mine and minion questions,
+separate gem quality, support quality, active-count limit, actual count near
+the enemy, throw count, aura-effect multiplier, and cap before doing arithmetic.
 
 PoB desktop accepts a `https://pobb.in/<id>` link in its Import/Export tab. For
 headless work, pass that link to Path of Everything with `--build-url`; the CLI
