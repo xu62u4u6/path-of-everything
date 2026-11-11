@@ -18,7 +18,7 @@ repeating arithmetic or re-researching already verified claims.
 ## Planned components
 
 ```text
-skills/          Agent workflows for audit, planning, and poe.ninja research
+skills/          Agent workflows for audit, planning, crafting, patch briefs, and poe.ninja research
 packages/        CLI, MCP adapter, connectors, and facts index
 vendor/pob-mcp/  Pinned upstream PoB headless bridge
 facts/           Reviewed, patch-scoped public facts
@@ -102,7 +102,7 @@ saved setting, or choose `none`, `standard`, or `uber` explicitly.
 
 ## Agent skills
 
-The versioned PoE audit, planning, and poe.ninja classification skills live in
+The versioned PoE audit, planning, crafting, patch-brief, and poe.ninja classification skills live in
 `skills/`. Their shared PoB-first, seasonal-update, factsheet, and privacy
 contract is `docs/agent-runtime.md`. Install or update the required skill folder
 in the agent's skill directory; keep this repository as the source of truth.

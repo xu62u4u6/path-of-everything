@@ -1,0 +1,378 @@
+{
+  "retrieved_at": "2026-09-27T09:28:59.581271+00:00",
+  "league": "Allflame",
+  "sources": {
+    "Currency": "https://poe.ninja/poe1/api/economy/exchange/current/overview?league=Allflame&type=Currency",
+    "Beast": "https://poe.ninja/poe1/api/economy/stash/current/item/overview?league=Allflame&type=Beast"
+  },
+  "raw_sha256": {
+    "Currency": "61e6cf6b12a25e67598fee374b397e0770ef0ca7938741a370bb28ca40208a36",
+    "Beast": "0c3763d6a10d18e1c672cd6912fe9b07a9e5d0cdaf907628cc96030cdd741dd9"
+  },
+  "core": {
+    "items": [
+      {
+        "id": "chaos",
+        "name": "Chaos Orb",
+        "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
+        "category": "Currency",
+        "detailsId": "chaos-orb"
+      },
+      {
+        "id": "divine",
+        "name": "Divine Orb",
+        "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
+        "category": "Currency",
+        "detailsId": "divine-orb"
+      }
+    ],
+    "rates": {
+      "divine": 0.002572
+    },
+    "primary": "chaos",
+    "secondary": "divine"
+  },
+  "lines": [
+    {
+      "id": "chaos",
+      "primaryValue": 1,
+      "volumePrimaryValue": 1306912,
+      "maxVolumeCurrency": "divine",
+      "maxVolumeRate": 388.8,
+      "sparkline": {
+        "totalChange": -8.63,
+        "data": [
+          -2.89,
+          -3.92,
+          -3.25,
+          -2.93,
+          -2.95,
+          -4.09,
+          -8.63
+        ]
+      }
+    },
+    {
+      "id": "divine",
+      "primaryValue": 388.8,
+      "volumePrimaryValue": 1306912,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 0.002572,
+      "sparkline": {
+        "totalChange": 9.43,
+        "data": [
+          2.97,
+          4.07,
+          3.35,
+          3.01,
+          3.05,
+          4.25,
+          9.43
+        ]
+      }
+    },
+    {
+      "id": "awakeners-orb",
+      "primaryValue": 1020,
+      "volumePrimaryValue": 25661,
+      "maxVolumeCurrency": "divine",
+      "maxVolumeRate": 0.3813,
+      "sparkline": {
+        "totalChange": -7.23,
+        "data": [
+          -6.45,
+          -2.61,
+          -3.4,
+          -4.77,
+          -4.48,
+          -9.09,
+          -7.23
+        ]
+      }
+    },
+    {
+      "id": "elders-exalted-orb",
+      "primaryValue": 102.0,
+      "volumePrimaryValue": 1938,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 0.009803,
+      "sparkline": {
+        "totalChange": 34.35,
+        "data": [
+          20.7,
+          27.41,
+          18.87,
+          10.83,
+          23.58,
+          74.14,
+          34.35
+        ]
+      }
+    },
+    {
+      "id": "shapers-exalted-orb",
+      "primaryValue": 160.2,
+      "volumePrimaryValue": 2190,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 0.006242,
+      "sparkline": {
+        "totalChange": 26.76,
+        "data": [
+          8.43,
+          14.43,
+          20.31,
+          20.31,
+          22.02,
+          20.43,
+          26.76
+        ]
+      }
+    },
+    {
+      "id": "veiled-exalted-orb",
+      "primaryValue": 4848,
+      "volumePrimaryValue": 37974,
+      "maxVolumeCurrency": "divine",
+      "maxVolumeRate": 0.0802,
+      "sparkline": {
+        "totalChange": -7.11,
+        "data": [
+          -1.46,
+          -2.6,
+          1.79,
+          0.38,
+          -3.06,
+          -3.04,
+          -7.11
+        ]
+      }
+    },
+    {
+      "id": "hunters-exalted-orb",
+      "primaryValue": 999.8,
+      "volumePrimaryValue": 3499,
+      "maxVolumeCurrency": "divine",
+      "maxVolumeRate": 0.3889,
+      "sparkline": {
+        "totalChange": -0.46,
+        "data": [
+          -19.21,
+          -14.75,
+          -26.45,
+          -27.47,
+          -23.33,
+          -10.53,
+          -0.46
+        ]
+      }
+    },
+    {
+      "id": "alt",
+      "primaryValue": 0.156,
+      "volumePrimaryValue": 8046,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 6.41,
+      "sparkline": {
+        "totalChange": -19.15,
+        "data": [
+          -7.46,
+          -6.82,
+          -8.0,
+          -13.93,
+          -20.43,
+          -25.75,
+          -19.15
+        ]
+      }
+    },
+    {
+      "id": "exalted",
+      "primaryValue": 2.55,
+      "volumePrimaryValue": 12272,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 0.3917,
+      "sparkline": {
+        "totalChange": -22.92,
+        "data": [
+          8.61,
+          13.56,
+          -10.83,
+          -28.78,
+          -29.93,
+          -23.7,
+          -22.92
+        ]
+      }
+    },
+    {
+      "id": "annul",
+      "primaryValue": 13.74,
+      "volumePrimaryValue": 14347,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 0.07276,
+      "sparkline": {
+        "totalChange": -18.74,
+        "data": [
+          -0.5,
+          -2.88,
+          -14.11,
+          -28.88,
+          -27.68,
+          -33.01,
+          -18.74
+        ]
+      }
+    },
+    {
+      "id": "scour",
+      "primaryValue": 0.6619,
+      "volumePrimaryValue": 5664,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 1.51,
+      "sparkline": {
+        "totalChange": -2.14,
+        "data": [
+          10.36,
+          13.77,
+          5.99,
+          24.78,
+          14.59,
+          -9.46,
+          -2.14
+        ]
+      }
+    },
+    {
+      "id": "transmute",
+      "primaryValue": 0.006486,
+      "volumePrimaryValue": 83.5,
+      "maxVolumeCurrency": "chaos",
+      "maxVolumeRate": 154.2,
+      "sparkline": {
+        "totalChange": -10.11,
+        "data": [
+          -9.38,
+          0.96,
+          8.31,
+          4.88,
+          23.36,
+          0.62,
+          -10.11
+        ]
+      }
+    }
+  ],
+  "beasts": [
+    {
+      "id": 5283,
+      "name": "Farric Wolf Alpha",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+      "baseType": "Wolves|Canines|The Wilds",
+      "itemClass": 2,
+      "sparkLine": {
+        "totalChange": 0,
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          -33.33,
+          -33.33,
+          0
+        ]
+      },
+      "chaosValue": 3.0,
+      "exaltedValue": 1.18,
+      "divineValue": 0.01,
+      "count": 61,
+      "detailsId": "farric-wolf-alpha",
+      "listingCount": 668
+    }
+  ],
+  "items": [
+    {
+      "id": "chaos",
+      "name": "Chaos Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
+      "category": "Currency",
+      "detailsId": "chaos-orb"
+    },
+    {
+      "id": "divine",
+      "name": "Divine Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
+      "category": "Currency",
+      "detailsId": "divine-orb"
+    },
+    {
+      "id": "alt",
+      "name": "Orb of Alteration",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxNYWdpYyIsInNjYWxlIjoxfV0/6308fc8ca2/CurrencyRerollMagic.png",
+      "category": "Currency",
+      "detailsId": "orb-of-alteration"
+    },
+    {
+      "id": "awakeners-orb",
+      "name": "Awakener's Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVHJhbnNmZXJPcmIiLCJzY2FsZSI6MX1d/f3b1c1566f/TransferOrb.png",
+      "category": "Currency",
+      "detailsId": "awakeners-orb"
+    },
+    {
+      "id": "elders-exalted-orb",
+      "name": "Elder's Exalted Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2VjcmV0c29mdGhlQXRsYXMvRWxkZXJFeGFsdGVkT3JiIiwic2NhbGUiOjF9XQ/06f31a048c/ElderExaltedOrb.png",
+      "category": "Currency",
+      "detailsId": "elders-exalted-orb"
+    },
+    {
+      "id": "shapers-exalted-orb",
+      "name": "Shaper's Exalted Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2VjcmV0c29mdGhlQXRsYXMvU2hhcGVyRXhhbHRlZE9yYiIsInNjYWxlIjoxfV0/a8cac8676e/ShaperExaltedOrb.png",
+      "category": "Currency",
+      "detailsId": "shapers-exalted-orb"
+    },
+    {
+      "id": "veiled-exalted-orb",
+      "name": "Veiled Exalted Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVmVpbGVkRXhhbHRlZE9yYiIsInNjYWxlIjoxfV0/976e8acb0b/VeiledExaltedOrb.png",
+      "category": "Currency",
+      "detailsId": "veiled-exalted-orb"
+    },
+    {
+      "id": "hunters-exalted-orb",
+      "name": "Hunter's Exalted Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSW5mbHVlbmNlIEV4YWx0cy9CYXNpbGlza09yYiIsInNjYWxlIjoxfV0/cd2131d564/BasiliskOrb.png",
+      "category": "Currency",
+      "detailsId": "hunters-exalted-orb"
+    },
+    {
+      "id": "exalted",
+      "name": "Exalted Orb",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRNb2RUb1JhcmUiLCJzY2FsZSI6MX1d/33f2656aea/CurrencyAddModToRare.png",
+      "category": "Currency",
+      "detailsId": "exalted-orb"
+    },
+    {
+      "id": "annul",
+      "name": "Orb of Annulment",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQW5udWxsT3JiIiwic2NhbGUiOjF9XQ/0858a418ac/AnnullOrb.png",
+      "category": "Currency",
+      "detailsId": "orb-of-annulment"
+    },
+    {
+      "id": "scour",
+      "name": "Orb of Scouring",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lDb252ZXJ0VG9Ob3JtYWwiLCJzY2FsZSI6MX1d/a0981d67fe/CurrencyConvertToNormal.png",
+      "category": "Currency",
+      "detailsId": "orb-of-scouring"
+    },
+    {
+      "id": "transmute",
+      "name": "Orb of Transmutation",
+      "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9NYWdpYyIsInNjYWxlIjoxfV0/ded9e8ee63/CurrencyUpgradeToMagic.png",
+      "category": "Currency",
+      "detailsId": "orb-of-transmutation"
+    }
+  ]
+}

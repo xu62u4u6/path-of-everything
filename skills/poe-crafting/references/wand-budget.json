@@ -1,0 +1,79 @@
+{
+  "league": "Allflame PC trade (assumed)",
+  "quoted_at": "2026-09-27T09:58:00+00:00",
+  "source": "references/price-evidence.json (09:28 UTC), references/base-price-evidence.json (09:58 UTC); bench recipes in int-wand.md",
+  "chaos_per_divine": 388.8,
+  "budget_divine": 20,
+  "items": [
+    {
+      "name": "Shaper Omen Wand i85 market estimate",
+      "quantity": 1,
+      "unit_chaos": 10
+    },
+    {
+      "name": "Elder Omen Wand i85 market estimate",
+      "quantity": 1,
+      "unit_chaos": 5
+    },
+    {
+      "name": "Orb of Alteration (3000 Shaper + 1000 Elder cap)",
+      "quantity": 4000,
+      "unit_chaos": 0.156
+    },
+    {
+      "name": "Awakener's Orb",
+      "quantity": 1,
+      "unit_chaos": 1020
+    },
+    {
+      "name": "prefix lock + multimod",
+      "quantity": 4,
+      "unit_chaos": 388.8
+    },
+    {
+      "name": "Exalted Orbs for attack speed bench",
+      "quantity": 4,
+      "unit_chaos": 2.55
+    },
+    {
+      "name": "Chaos Orbs for critical chance bench",
+      "quantity": 4,
+      "unit_chaos": 1
+    },
+    {
+      "name": "Orb of Scouring (both bases + suffix cleanup)",
+      "quantity": 3,
+      "unit_chaos": 0.6619
+    },
+    {
+      "name": "Orb of Transmutation",
+      "quantity": 2,
+      "unit_chaos": 0.006486
+    },
+    {
+      "name": "Farric Wolf Alpha (conditional)",
+      "quantity": 1,
+      "unit_chaos": 3
+    },
+    {
+      "name": "Orb of Annulment (optional risky rescue)",
+      "quantity": 1,
+      "unit_chaos": 13.74
+    },
+    {
+      "name": "yellow beast support / capture or purchase",
+      "quantity": 3,
+      "unit_chaos": null
+    },
+    {
+      "name": "craft unlock/service cost if not owned",
+      "quantity": 1,
+      "unit_chaos": null
+    }
+  ],
+  "trial": {
+    "success_probability": 0.0009487666034155598,
+    "attempt_cap": 3000,
+    "event": "Target Shaper prefix appears; other influenced suffixes allowed. NOT an eligible donor or finished-item probability."
+  }
+}

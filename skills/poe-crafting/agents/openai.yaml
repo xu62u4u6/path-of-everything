@@ -1,0 +1,4 @@
+interface:
+  display_name: "PoE Crafting"
+  short_description: "Plan PoE crafts with prices and failure branches"
+  default_prompt: "Use $poe-crafting to plan a budgeted PoE 1 craft and verify each step."

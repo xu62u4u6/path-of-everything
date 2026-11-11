@@ -1,0 +1,4 @@
+interface:
+  display_name: "PoE 改版精讀"
+  short_description: "讀取官方 PN、歸納版本方向並建立可追溯的精簡閱讀頁"
+  default_prompt: "使用 $poe-patch-brief 將指定版本的官方 PN 整理成有方向、有證據的繁體中文精簡頁。"

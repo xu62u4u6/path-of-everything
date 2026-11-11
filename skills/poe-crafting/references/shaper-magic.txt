@@ -1,0 +1,18 @@
+Item Class: Wands
+Rarity: Magic
+The Shaper's Imbued Wand
+--------
+Wand
+Physical Damage: 27-50
+Critical Strike Chance: 8.00%
+Attacks per Second: 1.60
+--------
+Item Level: 82
+--------
+{ Implicit Modifier }
+37% increased Spell Damage (implicit)
+--------
+{ Prefix Modifier "The Shaper's" (Tier: 1) — Damage, Elemental, Lightning, Attack }
+Adds 1 to 6 Lightning Damage to Attacks with this Weapon per 10 Intelligence
+--------
+Shaper Item

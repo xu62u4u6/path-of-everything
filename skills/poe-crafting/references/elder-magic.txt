@@ -1,0 +1,15 @@
+Item Class: Wands
+Rarity: Magic
+The Elder's Driftwood Wand
+--------
+Wand
+--------
+Item Level: 68
+--------
+{ Implicit Modifier }
+10% increased Spell Damage (implicit)
+--------
+{ Prefix Modifier "The Elder's" (Tier: 1) — Damage, Caster }
+1% increased Spell Damage per 16 Intelligence
+--------
+Elder Item

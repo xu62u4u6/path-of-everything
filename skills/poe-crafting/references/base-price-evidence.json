@@ -1,0 +1,63 @@
+{
+  "retrieved_at": "2026-09-27T09:58:00.278963+00:00",
+  "league": "Allflame",
+  "source": "https://poe.ninja/poe1/api/economy/stash/current/item/overview?league=Allflame&type=BaseType",
+  "raw_sha256": "46956c8a3ec7f7f98711434cd418367623e9b72acf8c39206c2c96c47d0f0af0",
+  "note": "Market estimates, not executable listings. levelRequired is the API field; detailsId encodes base tier level. Verify actual item level at purchase.",
+  "lines": [
+    {
+      "id": 10493,
+      "name": "Omen Wand",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9PbmVIYW5kV2VhcG9ucy9XYW5kcy9XYW5kNiIsInciOjEsImgiOjMsInNjYWxlIjoxfV0/30763e0fe7/Wand6.png",
+      "levelRequired": 85,
+      "variant": "Shaper",
+      "itemClass": 2,
+      "sparkLine": {
+        "totalChange": 0,
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "itemType": "Wand",
+      "chaosValue": 10.0,
+      "exaltedValue": 3.92,
+      "divineValue": 0.03,
+      "count": 55,
+      "detailsId": "omen-wand-85-shaper",
+      "listingCount": 529
+    },
+    {
+      "id": 8874,
+      "name": "Omen Wand",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9PbmVIYW5kV2VhcG9ucy9XYW5kcy9XYW5kNiIsInciOjEsImgiOjMsInNjYWxlIjoxfV0/30763e0fe7/Wand6.png",
+      "levelRequired": 85,
+      "variant": "Elder",
+      "itemClass": 2,
+      "sparkLine": {
+        "totalChange": 0,
+        "data": [
+          0,
+          0,
+          0,
+          10,
+          0,
+          0,
+          0
+        ]
+      },
+      "itemType": "Wand",
+      "chaosValue": 5.0,
+      "exaltedValue": 1.96,
+      "divineValue": 0.01,
+      "count": 40,
+      "detailsId": "omen-wand-85-elder",
+      "listingCount": 489
+    }
+  ]
+}
