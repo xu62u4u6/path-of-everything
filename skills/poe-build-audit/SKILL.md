@@ -152,6 +152,15 @@ input. Per-projectile, per-minion and total overlap remain separate quantities.
 At task end, propose reusable verified results for `facts/`; write them only
 with explicit authorization and never include private character data.
 
+## Existing Build-Guide Website
+
+When asked to turn a character or PoB into HTML/a guide, reuse the existing
+`poe-build-guide` importer and shared Vue renderer before considering a new
+frontend. Read [`references/build-guide-website.md`](references/build-guide-website.md)
+and the checkout README for the data contract, import/build commands and
+version boundary. Path of Everything supplies calculations; it does not replace
+the website importer. Keep private character exports and previews private.
+
 ## Acquire Evidence
 
 Prefer, in order:
