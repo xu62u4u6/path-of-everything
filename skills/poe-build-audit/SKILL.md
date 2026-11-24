@@ -300,6 +300,44 @@ Treat PoB enabled and configuration flags as calculation inputs. State separatel
 - Evaluate defence by hit type and state window. A maximum hit with full charges but no active guard skill is one slice, not average survivability.
 - Include recovery, resource costs, and failure loops; capped resistances alone do not establish durability.
 
+## Upgrade Checklist and Follow-up
+
+When an audit includes progression or upgrades, deliver an actionable Markdown
+checklist rather than only prose recommendations. Reconcile it against the fresh
+snapshot and the user's confirmed in-game changes before assigning status:
+
+- `[x] Completed`: cite the snapshot field or user confirmation proving the
+  requirement is satisfied. Owning an item does not prove a conditional effect
+  is active or sustainable.
+- `[ ] To verify`: state what remains unknown and the smallest check needed.
+  Never mark an unknown as completed or imply that it is definitely missing.
+- `[ ] Not completed`: state the observed gap and a concrete next action.
+
+Keep the status label beside each unchecked entry so uncertainty is distinct
+from a confirmed missing upgrade. Retain the source/snapshot date; on follow-up,
+update the existing checklist and preserve completed work instead of restarting.
+
+Batch incomplete purchases through
+[`scripts/batch_price_checks.py`](scripts/batch_price_checks.py), following
+[`references/batch-pricing.md`](references/batch-pricing.md). Prepare exact
+requirements once; group market requests, cache raw responses locally, and
+read the compact report before listing details. Stop further official requests
+after 403/429. An aggregate unique price never proves a required roll, variant,
+or timeless seed price; generated query links remain unvalidated if blocked.
+This automates evidence collection, not candidate eligibility or completion.
+
+For each incomplete purchasable upgrade, follow the Instant Buyout workflow in
+[references/sources.md](references/sources.md). Include the league, lookup time,
+required rolls, inspected price range, reproducible trade link/query, priority,
+and what the replacement must preserve. Keep the combined plan inside the
+user's budget; separate alternatives and optional purchases from the total.
+For leveling, quest/vendor rewards, and self-crafting, distinguish no market
+purchase from actual vendor/material costs and uncertain crafting cost. If
+pricing is blocked or supply is absent, leave the entry unchecked and record
+the blocker or lack of supply; never substitute an old guide price or an
+uninspected whisper floor for a current actionable price. Deferred or declined
+upgrades stay unchecked and explicitly deferred, not silently completed.
+
 ## Report
 
 For the first pass, produce a compact overview:
