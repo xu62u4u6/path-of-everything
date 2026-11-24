@@ -112,9 +112,45 @@ price, or survivability. Preserve every existing state-ledger, defensive,
 behavioral, legal-state, and source-verification check in this skill.
 
 At the first audit in a new league, or when compact output reports a stale
-engine, apply the seasonal gate before publishing current-version numbers. At
-task end, propose reusable verified results for `facts/`; write them only with
-explicit authorization and never include private character data.
+engine, apply the seasonal gate before publishing current-version numbers.
+
+### Reject incompatible calculations before interpreting damage
+
+Before using a compact result, run `scripts/check_pob_identity.py` with the
+source XML, captured compact output, actual PoB path and requested selection:
+
+```bash
+python3 scripts/check_pob_identity.py \
+  --build /private/current-with-spectre.xml --compact /private/compact.log \
+  --pob-path /path/to/PathOfBuilding \
+  --socket-group 3 --active-skill 1 --skill-name "Raise Spectre" \
+  --minion-skill 1 --skill-part-name "Ice Mortar"
+```
+
+The active source tree must exist in the runtime. The loaded class, ascendancy,
+level, socket group, active skill and requested minion/skill part must match.
+A successful process exit from PoB is not proof of a successful import: missing
+trees can silently produce another class, no ascendancy, or the wrong skill.
+If this check rejects a result, discard its damage and defence numbers. Never
+rescale them into an approximate current DPS or rewrite the source tree version
+to an older one to make the import succeed. A pass validates technical identity
+only; continue the existing minion, state, support and behavioral checks.
+
+On the first incompatibility, inspect the official PoB releases and runtime
+capabilities. Record the installed version, required tree, available compatible
+release and exact failure. Use an already available compatible runtime when
+permitted; installation or updates still follow the user's authorization.
+Explain a concrete remedy or the exact remaining permission/blocker once,
+rather than repeatedly rerunning the same incompatible input or merely saying
+the engine is old. Do not promise a DPS comparison until the gate passes.
+
+For spectres, an export without a recorded species or minion damage is not a
+zero-DPS character. Obtain the species and actual count from current evidence
+or the user, preserve the original XML, and record the selection in a separate
+input. Per-projectile, per-minion and total overlap remain separate quantities.
+
+At task end, propose reusable verified results for `facts/`; write them only
+with explicit authorization and never include private character data.
 
 ## Acquire Evidence
 
