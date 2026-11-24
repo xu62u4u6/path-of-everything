@@ -178,6 +178,20 @@ PoB exports can contain both active and weapon-swap equipment plus skill groups.
 
 Read `references/evidence-workbook.md` before a full audit. Read `references/sources.md` whenever current mechanics, values, prices, or patch behavior must be checked. When recommending or comparing a purchasable item, follow its Instant Buyout pricing workflow instead of quoting an uninspected whisper-listing floor. Read `references/behavioral-exceptions.md` when AI, control, relocation, targeting, overlap, secondary damage, or trigger eligibility is material.
 
+## Spectre Evidence
+
+When Raise Spectre is present, identify the actual monster species, count and
+roles from the current source or ask the user. A character name or the Raise
+Spectre gem alone does not identify its monsters. After identifying a species,
+retrieve its current PoEDB monster page and skill data before judging its
+supports, damage type, cooldowns or defences. Use
+[`references/spectre-data.md`](references/spectre-data.md) and
+`scripts/fetch_spectre.py` for a compact, source-preserving extraction instead
+of loading the whole page. Match the PoEDB metadata ID and skill ID to PoB;
+monster and skill ordering can differ. If extraction or matching fails, keep
+the missing part unknown. Never treat the page's displayed monster-level
+values as final raised-spectre stats or infer overlap/uptime from them.
+
 ## Inventory Before Full Analysis
 
 Collect all of the following that exist:
@@ -194,7 +208,7 @@ Collect all of the following that exist:
 - PoB configuration inputs, custom modifiers, enemy settings, stages, stacks, counts, Full DPS selections, and placeholders.
 - Snapshot time, stale or missing slots, unsupported calculations, and weapon-set selection.
 
-Do not infer an absent AG item set, spectre identity, or custom modifier. Mark it unknown. Before finalizing an audit that uses minions or unexplained ally effects, ask for the AG equipment, spectre identities, and other hidden support minions if the source does not expose them.
+Do not infer an absent AG item set, spectre identity, or custom modifier. Mark it unknown. Before finalizing an audit that uses minions or unexplained ally effects, ask for the relevant unknown AG equipment, spectre identities/counts, and other hidden support minions. Do not ask for an auxiliary minion that a verified build restriction forbids.
 
 Before declaring that a socket setup is broken, confirm links from item socket data, a screenshot, or the user. Do not treat separate PoB `<Skill>` groups or poe.ninja grouping as conclusive physical-link evidence.
 
